@@ -13,4 +13,6 @@ RUN curl -sL 'https://services.sonarr.tv/v1/download/main/latest?version=3&os=li
 RUN cert-sync /etc/ssl/certs/ca-certificates.crt &&\
     rm -rf /tmp/* /app/sonarr/bin/Sonarr.Update &&\
     apk del -q --no-cache curl apk-tools
+EXPOSE 8989
+VOLUME /downloads, /config, /tv
 ENTRYPOINT ["mono","/app/sonarr/bin/Sonarr.exe","-nobrowser","-data=/config"]

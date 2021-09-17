@@ -14,6 +14,10 @@ buildah run "$build0" sh -c "apk add --no-cache -q mono --repository http://dl-c
   cert-sync /etc/ssl/certs/ca-certificates.crt &&\
   rm -rf /tmp/* /app/sonarr/bin/Sonarr.Update &&\
   apk del -q --no-cache curl apk-tools"
-buildah config --entrypoint ["mono","/app/sonarr/bin/Sonarr.exe","-nobrowser","-data=/config"] "$build0"
+buildah config --entrypoint '["mono","/app/sonarr/bin/Sonarr.exe","-nobrowser","-data=/config"]' \
+ --volume /config \
+ --volume /tv \
+ --volume /downloads \
+ --port 8989 "$build0"
 buildah commit --rm "$build0" sonarr-alpine-container:latest
 

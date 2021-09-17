@@ -10,7 +10,7 @@ User=$UNPRIVILEGEDUSER
 Group=$UNPRIVILEGEDUSER
 ExecStart=podman \
 run \
---pod arr \
+--pod podarr \
 --name=sonarr \
 --tz=local \
 --rm \
