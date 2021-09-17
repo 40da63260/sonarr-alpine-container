@@ -1,0 +1,27 @@
+[Unit]
+Description=Podman container of the sonarr application
+After=network-online.target
+Wants=network-online.target
+
+
+[Service]
+WorkingDirectory=/mnt/Zwammy/container.stuff/rrpodman/sonarr
+User=$UNPRIVILEGEDUSER
+Group=$UNPRIVILEGEDUSER
+ExecStart=podman \
+run \
+--pod arr \
+--name=sonarr \
+--tz=local \
+--rm \
+--annotation run.oci.keep_original_groups=1 \
+-v /mnt/config/:/config:Z \
+-v /mnt/tv/:/tv/:rw \
+-v /mnt/downloads:/downloads:ro \
+--pull=always \
+ghcr.io/40da63260/sonarr-podman
+ExecStop=podman rm -f sonarr
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,61 @@
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  width: 100%;
+  cursor: default;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+.optionCheck {
+  composes: container from '~./CheckInput.css';
+
+  flex: 0 0 0;
+}
+
+.optionCheckInput {
+  composes: input from '~./CheckInput.css';
+
+  margin-top: 0;
+}
+
+.isSelected {
+  background-color: #e2e2e2;
+
+  &:hover {
+    background-color: #e2e2e2;
+  }
+
+  &.isMobile {
+    background-color: inherit;
+
+    .iconContainer {
+      color: $primaryColor;
+    }
+  }
+}
+
+.isDisabled {
+  background-color: #aaa;
+}
+
+.isHidden {
+  display: none;
+}
+
+.isMobile {
+  height: 50px;
+  border-bottom: 1px solid $borderColor;
+
+  &:last-child {
+    border: none;
+  }
+
+  &:hover {
+    background-color: unset;
+  }
+}
